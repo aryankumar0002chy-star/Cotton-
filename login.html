@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+  <title>COTTON | Pure Comfort, Pure Style</title>
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Helvetica Neue', 'Segoe UI', 'Roboto', sans-serif;
+      background: #ffffff;
+      color: #1a1a1a;
+      line-height: 1.4;
+      overflow-x: hidden;
+    }
+
+    /* Smooth scroll behavior */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* ----- STICKY NAVBAR ----- */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 3rem;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      transition: all 0.4s ease;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+    }
+
+    .navbar.scrolled {
+      padding: 0.8rem 3rem;
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 6px 24px rgba(0,0,0,0.05);
+    }
+
+    .logo {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: 4px;
+      color: #111;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #1e1e1e;
+      font-weight: 500;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      transition: 0.25s;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0%;
+      height: 1.5px;
+      background: #b89b7b;
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: #b89b7b;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 1.6rem;
+      cursor: pointer;
+      color: #111;
+    }
+
+    /* ----- HERO SECTION ----- */
+    .hero {
+      position: relative;
+      height: 100vh;
+      width: 100%;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f5f2ed;
+    }
+
+    .hero-video-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.9);
+      z-index: 0;
+    }
+
+    /* fallback slideshow if video not supported */
+    .hero-slideshow {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      animation: slideFade 12s infinite;
+      z-index: 0;
+    }
+
+    @keyframes slideFade {
+      0%, 100% { background-image: url('https://images.unsplash.com/photo-1523381210434-271e8be1f52b?q=80&w=2070&auto=format&fit=crop'); }
+      33% { background-image: url('https://images.unsplash.com/photo-1607082349566-187342175e3f?q=80&w=2070&auto=format&fit=crop'); }
+      66% { background-image: url('https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=2070&auto=format&fit=crop'); }
+    }
+
+    .hero-overlay {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      color: white;
+      text-shadow: 0 8px 30px rgba(0,0,0,0.5);
+      animation: fadeInUp 1.2s ease;
+    }
+
+    .hero h1 {
+      font-size: 4.5rem;
+      font-weight: 700;
+      letter-spacing: 10px;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .hero p {
+      font-size: 1.5rem;
+      font-weight: 300;
+      letter-spacing: 6px;
+      margin-bottom: 2.5rem;
+    }
+
+    .shop-now-btn {
+      background: white;
+      border: none;
+      padding: 1rem 3.2rem;
+      font-size: 1rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      cursor: pointer;
+      border-radius: 40px;
+      background: rgba(255,255,255,0.95);
+      color: #111;
+      transition: all 0.4s;
+      box-shadow: 0 0 25px rgba(255,255,255,0.5);
+      animation: glowPulse 2s infinite;
+      border: 1px solid rgba(255,255,255,0.8);
+    }
+
+    .shop-now-btn:hover {
+      background: #ffffff;
+      box-shadow: 0 0 45px rgba(255,255,255,0.9);
+      transform: scale(1.03);
+    }
+
+    @keyframes glowPulse {
+      0% { box-shadow: 0 0 15px rgba(255,255,255,0.3); }
+      50% { box-shadow: 0 0 45px rgba(255,255,255,0.8); }
+      100% { box-shadow: 0 0 15px rgba(255,255,255,0.3); }
+    }
+
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(40px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ----- SECTIONS GENERAL ----- */
+    section {
+      padding: 5rem 3rem;
+      max-width: 1400px;
+      margin: 0 auto;
+      opacity: 0;
+      transform: translateY(25px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section-title {
+      font-size: 2.4rem;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 3rem;
+      letter-spacing: 3px;
+      color: #222;
+    }
+
+    /* Product Cards Grid */
+    .product-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+    }
+
+    .product-card {
+      flex: 1 1 250px;
+      max-width: 300px;
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.03);
+      transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1);
+      cursor: pointer;
+      position: relative;
+    }
+
+    .product-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 25px 40px rgba(0,0,0,0.08);
+    }
+
+    .product-img {
+      width: 100%;
+      height: 380px;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .product-card:hover .product-img {
+      transform: scale(1.05);
+    }
+
+    .product-info {
+      padding: 1.2rem;
+      text-align: center;
+    }
+
+    .product-info h3 {
+      font-weight: 500;
+      letter-spacing: 1px;
+    }
+
+    .price {
+      color: #7a6a5c;
+      font-weight: 600;
+      margin-top: 0.4rem;
+    }
+
+    /* Parallax banner */
+    .parallax-banner {
+      background-image: url('https://images.unsplash.com/photo-1601924994987-69e26d50dc26?q=80&w=2070&auto=format&fit=crop');
+      background-attachment: fixed;
+      background-size: cover;
+      background-position: center;
+      height: 70vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      margin: 3rem 0;
+    }
+
+    .parallax-content {
+      background: rgba(255,255,255,0.8);
+      backdrop-filter: blur(10px);
+      padding: 2.5rem 4rem;
+      text-align: center;
+      border-radius: 8px;
+    }
+
+    /* Instagram grid */
+    .insta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 0.8rem;
+    }
+
+    .insta-item {
+      overflow: hidden;
+      aspect-ratio: 1/1;
+    }
+
+    .insta-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: 0.5s;
+    }
+
+    .insta-item img:hover {
+      transform: scale(1.08);
+    }
+
+    /* Reviews */
+    .review-slider {
+      display: flex;
+      gap: 2rem;
+      overflow-x: auto;
+      padding: 1rem 0;
+      scrollbar-width: thin;
+    }
+
+    .review-card {
+      min-width: 280px;
+      background: #faf9f7;
+      padding: 2rem;
+      border-radius: 16px;
+    }
+
+    /* Footer */
+    .footer {
+      background: #f4f2ef;
+      padding: 3rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 1rem 1.5rem;
+      }
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: rgba(255,255,255,0.98);
+        padding: 2rem;
+        gap: 1.5rem;
+      }
+      .nav-links.active {
+        display: flex;
+      }
+      .menu-toggle {
+        display: block;
+      }
+      .hero h1 {
+        font-size: 2.8rem;
+        letter-spacing: 4px;
+      }
+      section {
+        padding: 3rem 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Sticky Navbar -->
+  <nav class="navbar" id="navbar">
+    <a href="#" class="logo">COTTON</a>
+    <div class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#men">Men</a></li>
+      <li><a href="#women">Women</a></li>
+      <li><a href="#new">New Arrivals</a></li>
+      <li><a href="#collections">Collections</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO SECTION with video/slideshow -->
+  <section class="hero" id="home">
+    <video class="hero-video-bg" autoplay muted loop playsinline>
+      <source src="https://assets.mixkit.co/videos/preview/mixkit-fashion-model-with-colorful-dress-39842-large.mp4" type="video/mp4">
+      <!-- fallback image slideshow if video fails -->
+    </video>
+    <div class="hero-slideshow"></div>
+    <div class="hero-overlay">
+      <h1>COTTON</h1>
+      <p>Pure Comfort, Pure Style</p>
+      <button class="shop-now-btn">Shop Now</button>
+    </div>
+  </section>
+
+  <!-- Featured Collection -->
+  <section id="collections">
+    <h2 class="section-title">FEATURED COLLECTION</h2>
+    <div class="product-grid">
+      <div class="product-card"><img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?q=80&w=1936&auto=format&fit=crop" class="product-img" alt="cotton shirt"><div class="product-info"><h3>Classic White Shirt</h3><p class="price">$89.00</p></div></div>
+      <div class="product-card"><img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?q=80&w=1964&auto=format&fit=crop" class="product-img" alt="beige dress"><div class="product-info"><h3>Linen Blend Dress</h3><p class="price">$129.00</p></div></div>
+      <div class="product-card"><img src="https://images.unsplash.com/photo-1593030761757-71fae45fa0e7?q=80&w=2080&auto=format&fit=crop" class="product-img" alt="cotton pants"><div class="product-info"><h3>Relaxed Trousers</h3><p class="price">$99.00</p></div></div>
+    </div>
+  </section>
+
+  <!-- Trending Cotton Wear -->
+  <section id="new">
+    <h2 class="section-title">TRENDING COTTON WEAR</h2>
+    <div class="product-grid">
+      <div class="product-card"><img src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?q=80&w=1974&auto=format&fit=crop" class="product-img"><div class="product-info"><h3>Oversized Tee</h3><p class="price">$59.00</p></div></div>
+      <div class="product-card"><img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?q=80&w=1976&auto=format&fit=crop" class="product-img"><div class="product-info"><h3>Cotton Jogger</h3><p class="price">$79.00</p></div></div>
+      <div class="product-card"><img src="https://images.unsplash.com/photo-1603252109303-2751441dd157?q=80&w=1974&auto=format&fit=crop" class="product-img"><div class="product-info"><h3>Knitted Polo</h3><p class="price">$109.00</p></div></div>
+    </div>
+  </section>
+
+  <!-- Men's Collection -->
+  <section id="men">
+    <h2 class="section-title">MEN'S COLLECTION</h2>
+    <div class="product-grid">
+      <div class="product-card"><img src="https://images.unsplash.com/photo-1617137968427-85924c800a22?q=80&w=1974&auto=format&fit=crop" class="product-img"><div class="product-info"><h3>Cotton Linen Shirt</h3><p class="price">$94.00</p></div></div>
+      <div class="product-card"><img src="https://images.unsplash.com/photo-1621072156002-e2fccdc0b176?q=80&w=1974&auto=format&fit=crop" class="product-img"><div class="product-info"><h3>Soft Chinos</h3><p class="price">$110.00</p></div></div>
+    </div>
+  </section>
+
+  <!-- Women's Collection -->
+  <section id="women">
+    <h2 class="section-title">WOMEN'S COLLECTION</h2>
+    <div class="product-grid">
+      <div class="product-card"><img src="https://images.unsplash.com/photo-1581044777550-4cfa60707c03?q=80&w=1972&auto=format&fit=crop" class="product-img"><div class="product-info"><h3>Wrap Dress</h3><p class="price">$135.00</p></div></div>
+      <div class="product-card"><img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?q=80&w=1983&auto=format&fit=crop" class="product-img"><div class="product-info"><h3>Cotton Blouse</h3><p class="price">$85.00</p></div></div>
+    </div>
+  </section>
+
+  <!-- Summer Cotton Parallax Banner -->
+  <div class="parallax-banner">
+    <div class="parallax-content">
+      <h2 style="font-size:2.2rem; letter-spacing:4px;">SUMMER COTTON</h2>
+      <p style="margin-top:1rem;">Lightweight elegance for sunny days</p>
+    </div>
+  </div>
+
+  <!-- Customer Reviews Slider -->
+  <section>
+    <h2 class="section-title">LOVED BY YOU</h2>
+    <div class="review-slider">
+      <div class="review-card">⭐⭐⭐⭐⭐<br><strong>"The softest cotton ever"</strong><br>– Amara K.</div>
+      <div class="review-card">⭐⭐⭐⭐⭐<br><strong>"Perfect fit & style"</strong><br>– James L.</div>
+      <div class="review-card">⭐⭐⭐⭐⭐<br><strong>"My go-to brand"</strong><br>– Sofia M.</div>
+      <div class="review-card">⭐⭐⭐⭐⭐<br><strong>"Elegant simplicity"</strong><br>– David R.</div>
+    </div>
+  </section>
+
+  <!-- Instagram Gallery Grid -->
+  <section>
+    <h2 class="section-title">@COTTONSTYLE</h2>
+    <div class="insta-grid">
+      <div class="insta-item"><img src="https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?q=80&w=1935&auto=format&fit=crop" alt="insta1"></div>
+      <div class="insta-item"><img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1924&auto=format&fit=crop" alt="insta2"></div>
+      <div class="insta-item"><img src="https://images.unsplash.com/photo-1485462537746-965f33f7f6a7?q=80&w=1974&auto=format&fit=crop" alt="insta3"></div>
+      <div class="insta-item"><img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=2070&auto=format&fit=crop" alt="insta4"></div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer" id="contact">
+    <div style="display:flex; gap:2rem; align-items:center;">
+      <span style="font-weight:700; font-size:1.5rem;">COTTON</span>
+      <div>
+        <i class="fab fa-instagram" style="margin:0 8px; font-size:1.4rem;"></i>
+        <i class="fab fa-facebook" style="margin:0 8px; font-size:1.4rem;"></i>
+        <i class="fab fa-pinterest" style="margin:0 8px; font-size:1.4rem;"></i>
+      </div>
+    </div>
+    <div>
+      <input type="email" placeholder="Newsletter signup" style="padding:0.7rem; border:1px solid #ccc; border-radius:30px; width:200px;">
+      <button style="background:#111; color:white; border:none; padding:0.7rem 1.5rem; border-radius:30px; margin-left:0.5rem;">Subscribe</button>
+    </div>
+    <p style="width:100%; text-align:center; margin-top:1.5rem; color:#555;">© 2025 COTTON. Pure comfort, pure style.</p>
+  </footer>
+
+  <script>
+    (function() {
+      // Navbar scroll effect
+      const navbar = document.getElementById('navbar');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          navbar.classList.add('scrolled');
+        } else {
+          navbar.classList.remove('scrolled');
+        }
+      });
+
+      // Mobile menu toggle
+      const menuToggle = document.getElementById('menuToggle');
+      const navLinks = document.getElementById('navLinks');
+      menuToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+      });
+
+      // Smooth fade-in sections on scroll (Intersection Observer)
+      const sections = document.querySelectorAll('section');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+
+      sections.forEach(section => observer.observe(section));
+
+      // Parallax effect handled by CSS background-attachment: fixed (already).
+      // Additional sliding product showcase effect (already visual).
+
+      // Animated text reveal for hero is via CSS animation.
+      // Hover zoom on product images active.
+
+      // Close mobile menu when link clicked
+      document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+          if (navLinks.classList.contains('active')) {
+            navLinks.classList.remove('active');
+          }
+        });
+      });
+
+      // Small script to ensure video fallback: if video fails, slideshow remains visible.
+      const video = document.querySelector('.hero-video-bg');
+      video.addEventListener('error', function() {
+        video.style.display = 'none';
+      });
+
+      // Force first section visible on load
+      window.addEventListener('load', () => {
+        document.querySelectorAll('section').forEach(s => {
+          if (s.getBoundingClientRect().top < window.innerHeight) {
+            s.classList.add('visible');
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
